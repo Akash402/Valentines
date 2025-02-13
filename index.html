@@ -3,162 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Be My Valentine?</title>
-    <style>
-        /* Google Font */
-        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-
-        body {
-            margin: 0;
-            overflow: hidden;
-            background: linear-gradient(120deg, #ff9a9e, #fad0c4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: 'Pacifico', cursive;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 90%;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: white;
-            opacity: 0;
-            animation: fadeIn 2s ease-in forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .buttons {
-            margin-top: 20px;
-            position: relative;
-        }
-
-        .btn {
-            font-size: 1.5rem;
-            padding: 15px 30px;
-            border: none;
-            cursor: pointer;
-            border-radius: 50px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .yes-btn {
-            background-color: #ff4f81;
-            color: white;
-            font-size: 2rem;
-            padding: 20px 40px;
-            box-shadow: 0px 4px 10px rgba(255, 79, 129, 0.5);
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        .no-btn {
-            background-color: #ffffff;
-            color: #ff4f81;
-            font-size: 1rem;
-            padding: 5px 10px;
-            position: absolute;
-            left: 50px;
-            transition: transform 0.3s ease;
-        }
-
-        .no-btn:hover {
-            transform: rotate(10deg);
-        }
-
-        /* Floating hearts animation */
-        .heart {
-            position: absolute;
-            color: red;
-            font-size: 20px;
-            animation: float 4s linear infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(-100vh); opacity: 0; }
-        }
-
-        /* Responsive Styling */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            .yes-btn {
-                font-size: 1.5rem;
-                padding: 15px 30px;
-            }
-            .no-btn {
-                font-size: 0.8rem;
-                padding: 4px 8px;
-            }
-        }
-    </style>
+    <title>Will You Be My Valentine?</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <div class="container">
-        <h1>Will you be my Valentine?</h1>
+        <h1 class="question fade-in">Will you be my Valentine?</h1>
         <div class="buttons">
-            <button class="btn yes-btn" onclick="alert('Yay! ❤️')">Yes</button>
-            <button class="btn no-btn" onmouseover="moveButton()">No</button>
+            <button id="yesBtn" class="yes-button pulse">Yes</button>
+            <button id="noBtn" class="no-button">No</button>
+        </div>
+        <div id="memeContainer" class="meme-container">
+            <!-- Memes will be shown here -->
         </div>
     </div>
-
-    <audio id="chime" src="https://www.fesliyanstudios.com/play-mp3/6529"></audio>
-
-    <script>
-        function moveButton() {
-            const button = document.querySelector('.no-btn');
-            const chime = document.getElementById('chime');
-
-            // Get viewport dimensions
-            const maxX = window.innerWidth - button.clientWidth - 20; // Keep it inside the screen
-            const maxY = window.innerHeight - button.clientHeight - 20;
-
-            // Generate a new position within the viewport
-            const x = Math.max(10, Math.random() * maxX);
-            const y = Math.max(10, Math.random() * maxY);
-
-            button.style.left = `${x}px`;
-            button.style.top = `${y}px`;
-
-            // Play chime
-            chime.play();
-        }
-
-        // Create floating hearts
-        function createHeart() {
-            const heart = document.createElement("div");
-            heart.innerHTML = "❤️";
-            heart.classList.add("heart");
-            document.body.appendChild(heart);
-
-            // Set random position and size
-            heart.style.left = Math.random() * window.innerWidth + "px";
-            heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
-
-            // Remove heart after animation
-            setTimeout(() => {
-                heart.remove();
-            }, 4000);
-        }
-
-        setInterval(createHeart, 500);
-    </script>
-
+    <audio id="chimeSound" src="chime.mp3" preload="auto"></audio>
+    <script src="scripts.js"></script>
 </body>
 </html>
