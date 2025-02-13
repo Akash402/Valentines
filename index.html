@@ -3,21 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine?</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Be My Valentine?</title>
+    <style>
+        /* Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Pacifico', cursive;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 90%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: white;
+            opacity: 0;
+            animation: fadeIn 2s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .btn {
+            font-size: 1.5rem;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .meme {
+            width: 300px;
+            margin: 10px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .yes-btn {
+            background-color: #ff4f81;
+            color: white;
+            font-size: 2rem;
+            padding: 20px 40px;
+            box-shadow: 0px 4px 10px rgba(255, 79, 129, 0.5);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .no-btn {
+            background-color: #ffffff;
+            color: #ff4f81;
+            font-size: 1rem;
+            padding: 5px 10px;
+            position: absolute;
+            left: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Floating hearts animation */
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 20px;
+            animation: float 4s linear infinite;
+        }
+
+        .meme-container {
+            display: none;
+            margin-top: 20px;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .yes-btn {
+                font-size: 1.5rem;
+                padding: 15px 30px;
+            }
+            .no-btn {
+                font-size: 0.8rem;
+                padding: 4px 8px;
+            }
+        }
+    </style>
 </head>
 <body>
+
     <div class="container">
-        <h1 class="question fade-in">Will you be my Valentine?</h1>
+        <h1>Will you be my Valentine?</h1>
         <div class="buttons">
-            <button id="yesBtn" class="yes-button pulse">Yes</button>
-            <button id="noBtn" class="no-button">No</button>
+            <button class="btn yes-btn" onclick="hehehe()">Yes</button>
+            <button class="btn no-btn" onclick="howdareyou()">No</button>
         </div>
-        <div id="memeContainer" class="meme-container">
-            <!-- Memes will be shown here -->
-        </div>
+        <div id="memeContainer" class="meme-container"></div>
     </div>
-    <audio id="chimeSound" src="chime.mp3" preload="auto"></audio>
-    <script src="scripts.js"></script>
+
+    <script>
+        function hehehe() {
+            const memes = [
+                "https://media.giphy.com/media/t3sZxY5zS5B0z5zMIz/giphy.gif?cid=790b761162loosuzayrwytmc0wj8zk7gqib5m6kadws1ysgp&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+                "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3BqcWI3MmppazU0eDZiMmw1MzczcW1vNG56bTM0djd4dmhmOXpxdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3ohhweiVB36rAlqVCE/giphy.gif",
+                "https://media.giphy.com/media/3o7TKo6fiRVhQlgoPS/giphy.gif?cid=790b76117pjqb72jik54x6b2l5373qmo4nzm34v7xvhf9zqt&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+                "https://media.giphy.com/media/kEKcOWl8RMLde/giphy.gif?cid=790b76117g5dnhg0hy1g33zqv9ees03rfd82wa7o15erarl1&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+                "https://media.giphy.com/media/l3q2Z6S6n38zjPswo/giphy.gif?cid=ecf05e47t8lp2pdxbvgn2h3pkio1f1p5q4p7415fl7o3zc9r&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+                "https://media.giphy.com/media/WUq1cg9K7uzHa/giphy.gif?cid=ecf05e47hdyyh58lqekrdgam33217v6q94j9qaes4x06hnng&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+                "https://media.giphy.com/media/l0HlO4vdchLBZNxYc/giphy.gif?cid=ecf05e47xu49x1in0b09dlnzjddatgp2vihtyhzt6zgw0qg6&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+                "https://media.giphy.com/media/Ls6ahtmYHU760/giphy.gif?cid=ecf05e47y6zcbpgrqyk8poy1ptk48htar94bbej4lwgnnt4n&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+            ];
+
+            // Select a random meme from the array
+            const randomMeme = memes[Math.floor(Math.random() * memes.length)];
+            
+            const memeContainer = document.getElementById('memeContainer');
+            memeContainer.innerHTML = ''; // Clear any previous memes
+            
+            const img = document.createElement('img');
+            img.src = randomMeme;
+            img.alt = "Funny Meme";
+            img.classList.add('meme');
+            memeContainer.appendChild(img);
+            
+            memeContainer.style.display = "block"; // Make the meme container visible
+        }
+
+        function howdareyou() {
+
+            const memes = [
+                "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExazJyOWt1ejhuZ2NyeWFjYWE0dmc3bDg3amx0cG5xZHhkYjRod3g0dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OPU6wzx8JrHna/giphy.gif", 
+                "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2xxdnZ0cnF6djZ2ZjJneWRkdzJ5aWp4Y2Z0eHFocmFyZmVlbXJkcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/olBdekWxyAxA5hmvGF/giphy.gif",
+                "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2Z5Y3IwYWlqdGh4N3Zua2JuaTR0aGJpa3h1Y3p5cTlxemtlbXpjbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/H6cmWzp6LGFvqjidB7/giphy.gif",
+                "https://media.giphy.com/media/W0c3xcZ3F1d0EYYb0f/giphy.gif?cid=ecf05e47ac0xlxsm1azz1fl529b1p918wh1f8odohkubaxiy&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+                "https://media.giphy.com/media/elBtLeVxgzWgM/giphy.gif?cid=ecf05e47ac0xlxsm1azz1fl529b1p918wh1f8odohkubaxiy&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+                "https://media.giphy.com/media/4DFX5EL3xamLC/giphy.gif?cid=ecf05e47ml1v1d7236vgbu2h6ipxq2atfcmo5xiaxtldqg86&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+                "https://media.giphy.com/media/3oEduSQonFIXK55aQo/giphy.gif?cid=ecf05e47f7v9n8q3hwe3dpiletouixcen5rik8glt0esc62q&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+                "https://media.giphy.com/media/YzicLccU2gWXDs8HoE/giphy.gif?cid=ecf05e47twk21fpo8lle2pz80rpcs07iz1nqtqcfaev0d5ff&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+            ];
+
+            // Select a random meme from the array
+            const randomMeme = memes[Math.floor(Math.random() * memes.length)];
+            
+            const memeContainer = document.getElementById('memeContainer');
+            memeContainer.innerHTML = ''; // Clear any previous memes
+            
+            const img = document.createElement('img');
+            img.src = randomMeme;
+            img.alt = "Funny Meme";
+            img.classList.add('meme');
+            memeContainer.appendChild(img);
+            
+            memeContainer.style.display = "block"; // Make the meme container visible
+        }
+
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.classList.add("heart");
+            document.body.appendChild(heart);
+
+            // Set random position and size
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+
+            // Remove heart after animation
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+
+        setInterval(createHeart, 500);
+    </script>
+
 </body>
 </html>
